@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--  Создание через конструктор  -->
+    <bean id="electricityStation" class="com.jetbulb.spring.overview.ElectricityStation"/>
+
+    <!--  Создание через конструктор  -->
+    <bean id="waterpumpStation" class="com.jetbulb.spring.overview.WaterpumpStation">
+        <constructor-arg type="int" index="2" value="4" />
+        <constructor-arg type="java.lang.String" value="District #13 Waterpump Station" />
+        <constructor-arg type="int" index="1" value="1000" />
+    </bean>
+
+    <!--  Создание компоненты (бина) и внедрение зависимостей при помощи конструктора и сеттера  -->
+    <bean id="districtSystem" class="com.jetbulb.spring.overview.DistrictSystem">
+        <property name="waterpumpStation" ref="waterpumpStation"/>
+        <constructor-arg ref="electricityStation"/>
+    </bean>
+
+</beans>
